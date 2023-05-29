@@ -1,7 +1,0 @@
-name: NoMHPlugins
-version: '1.0-SNAPSHOT'
-main: org.cartyoo.nomhplugins.NoMHPlugins
-api-version: 1.17
-load: STARTUP
-authors: [ cartyoo ]
-website: cartyoo.org
