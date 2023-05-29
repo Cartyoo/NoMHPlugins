@@ -4,32 +4,35 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class NoMHPlugins extends JavaPlugin implements Listener {
     static NoMHPlugins plugin;
 
+
     @Override
     public void onEnable() {
 
-        getLogger().info("&d&lNoMoreMinehut Loaded");
-        getLogger().info("&d&lNoMoreMinehut Made By herbert#6969 aka Cartyoo");
+        getLogger().info("NoMHPlugins Loaded");
 
 
         getServer().getPluginManager().registerEvents(this, this);
 
 
-        Plugin minehut = Bukkit.getPluginManager().getPlugin("MinehutCosmetics");
-        Plugin minehut2 = Bukkit.getPluginManager().getPlugin("MinehutPlugin");
-
-        if(minehut.isEnabled()) {
-            Bukkit.getServer().getPluginManager().disablePlugin(minehut);
+        if(Bukkit.getPluginManager().getPlugin("MinehutCosmetics") != null) {
+            Bukkit.getServer().getPluginManager().disablePlugin(Bukkit.getPluginManager().getPlugin("MinehutCosmetics"));
+        } else {
+            Bukkit.getLogger().info("Plugin 'MinehutCosmetics' not found! (This is normal)");
         }
 
-        if(minehut2.isEnabled()) {
-            Bukkit.getServer().getPluginManager().disablePlugin(minehut2);
+        if(Bukkit.getPluginManager().getPlugin("MinehutPlugin") != null) {
+            Bukkit.getServer().getPluginManager().disablePlugin(Bukkit.getPluginManager().getPlugin("MinehutPlugin"));
+        } else {
+            Bukkit.getLogger().info("Plugin 'MinehutPlugin' not found! (This is normal)");
         }
+
+
+        Bukkit.getLogger().info("[NoMHPlugins] Note: You may need to join the server to disable Minehut's plugins.");
 
 
         //bStats
@@ -38,22 +41,17 @@ public final class NoMHPlugins extends JavaPlugin implements Listener {
         metrics.addCustomChart(new Metrics.SimplePie("ok", () -> "ok"));
     }
 
-    private static NoMHPlugins getPlugin() {
-        return plugin;
-    }
-
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        Plugin minehut = Bukkit.getPluginManager().getPlugin("MinehutCosmetics");
-        Plugin minehut2 = Bukkit.getPluginManager().getPlugin("MinehutPlugin");
 
-        if(minehut.isEnabled()) {
-            Bukkit.getServer().getPluginManager().disablePlugin(minehut);
+        if(Bukkit.getPluginManager().getPlugin("MinehutCosmetics") != null) {
+            Bukkit.getServer().getPluginManager().disablePlugin(Bukkit.getPluginManager().getPlugin("MinehutCosmetics"));
         }
 
-        if(minehut2.isEnabled()) {
-            Bukkit.getServer().getPluginManager().disablePlugin(minehut2);
+        if(Bukkit.getPluginManager().getPlugin("MinehutPlugin") != null) {
+            Bukkit.getServer().getPluginManager().disablePlugin(Bukkit.getPluginManager().getPlugin("MinehutPlugin"));
         }
+
     }
 
 }
